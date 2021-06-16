@@ -39,21 +39,13 @@ class Page
     }
 }
 
+/**
+ * CodeSim is derived from JPanel. You'll have to supply a file path that contains a source code.
+ *
+ * Before using its navigation function, it is important that the the init() method is invoked first. Also, if you customize its appearance, it will only take effect if you invoke the init() method.
+ */
 public class CodeSim extends JPanel
 {
-    public static void main(String[] args)
-    {
-        JFrame frame = new JFrame("CodeSim");
-        frame.setLocationRelativeTo(null);
-        frame.setSize(500, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        CodeSim codeSim = new CodeSim(new String[]{"samplecode", "samplecode1"});
-        codeSim.init();
-        codeSim.setLine(2);
-        frame.add(codeSim);
-        frame.setVisible(true);
-    }
-
     private final ArrayList<ArrayList<JLabel>> codes;
     private final ArrayList<Page> pages;
     private final CardLayout cardLayout;
@@ -82,14 +74,20 @@ public class CodeSim extends JPanel
         setLayout(cardLayout);
     }
 
-    // Use this constructor for one page codes.
+    /**
+     * Use this constructor to generate a one page code simulation
+     * @param path source code file path
+     */
     public CodeSim(String path)
     {
         this();
         codes.add(parseCode(path));
     }
 
-    // Use this constructor for multiple page of codes.
+    /**
+     * Use this constructor to generate a multi page code simulation
+     * @param paths source code file paths
+     */
     public CodeSim(String[] paths)
     {
         this();
@@ -99,7 +97,10 @@ public class CodeSim extends JPanel
         }
     }
 
-    // Creates arrays of JPanel as the pages of codes. (MUST CALL THIS METHOD BEFORE DOING ANYTHING ELSE)
+    /**
+     * Initializes the object. Must be called before using the object.
+     * Invoke this method after customizing appearance.
+     */
     public void init()
     {
         revalidate();
@@ -148,16 +149,26 @@ public class CodeSim extends JPanel
         }
     }
 
+    /**
+     * Goes to the next page of code.
+     */
     public void nextPage()
     {
         cardLayout.next(this);
     }
 
+    /**
+     * Goes to the previous page of code.
+     */
     public void prevPage()
     {
         cardLayout.previous(this);
     }
 
+    /**
+     * Highlights the line at index.
+     * @param index the index of the line
+     */
     public void setLine(int index)
     {
         for(Page page : pages)
@@ -204,6 +215,7 @@ public class CodeSim extends JPanel
     }
 
     // Setters
+
     public void setFont(String name)
     {
         font = new Font(name, Font.PLAIN, 13);
