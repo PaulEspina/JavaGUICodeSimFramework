@@ -183,11 +183,63 @@ public class CodeSim extends JPanel
                     panel.setBackground(highlightBackground);
                     label.setForeground(highlightForeGround);
                 }
-                else
+            }
+        }
+    }
+
+    public void setLine(int[] indices)
+    {
+        for(Page page: pages)
+        {
+            for(int index : indices)
+            {
+                JPanel panel = page.getPanel(index);
+                panel.setBackground(highlightBackground);
+                JLabel label = page.getLabels(index);
+                label.setForeground(highlightForeGround);
+            }
+        }
+    }
+
+    public void unsetLine(int index)
+    {
+        for(Page page : pages)
+        {
+            for(int i = 0; i < page.size(); i++)
+            {
+                JPanel panel = page.getPanel(i);
+                JLabel label = page.getLabels(i);
+                if(i == index)
                 {
-                    panel.setBackground(background);
-                    label.setForeground(foreground);
+                    panel.setBackground(highlightBackground);
+                    label.setForeground(highlightForeGround);
                 }
+            }
+        }
+    }
+
+    public void unsetLine(int[] indices)
+    {
+        for(Page page: pages)
+        {
+            for(int index : indices)
+            {
+                JPanel panel = page.getPanel(index);
+                panel.setBackground(background);
+                JLabel label = page.getLabels(index);
+                label.setForeground(foreground);
+            }
+        }
+    }
+
+    public void resetLines()
+    {
+        for(Page page: pages)
+        {
+            for(int i = 0; i < page.size(); i++)
+            {
+                page.getPanel(i).setBackground(background);
+                page.getLabels(i).setForeground(foreground);
             }
         }
     }
