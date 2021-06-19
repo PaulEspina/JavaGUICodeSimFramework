@@ -49,6 +49,7 @@ public class CodeSim extends JPanel
     private final ArrayList<ArrayList<JLabel>> codes;
     private final ArrayList<Page> pages;
     private final CardLayout cardLayout;
+    JScrollPane scrollPane;
 
     // Display Attributes
     private Font font;
@@ -111,7 +112,7 @@ public class CodeSim extends JPanel
         {
             JPanel pagePanel = new JPanel();
             pagePanel.setLayout(new BoxLayout(pagePanel, BoxLayout.Y_AXIS));
-            JScrollPane scrollPane = new JScrollPane(pagePanel);
+            scrollPane = new JScrollPane(pagePanel);
 
             // ROW HEADER
             JViewport rowViewport = new JViewport();
@@ -296,5 +297,10 @@ public class CodeSim extends JPanel
     public int getLineCount(int pageIndex)
     {
         return pages.get(pageIndex).size();
+    }
+
+    public JScrollPane getScrollPane()
+    {
+        return scrollPane;
     }
 }
