@@ -61,7 +61,7 @@ public class CodeSim extends JPanel
 
     private CodeSim()
     {
-        font = new Font("Consola", Font.PLAIN, 13);
+        font = new Font("Consolas", Font.PLAIN, 13);
         lineNumberBackground = Color.black;
         lineNumberForeground = Color.gray;
         background = Color.white;
@@ -291,5 +291,10 @@ public class CodeSim extends JPanel
     public Color getHighlightForeGround()
     {
         return highlightForeGround;
+    }
+
+    public int getLineCount(int pageIndex)
+    {
+        return pages.get(pageIndex).size();
     }
 }
